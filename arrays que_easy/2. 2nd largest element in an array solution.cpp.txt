@@ -21,6 +21,11 @@ int main()
             smaxxx = maxxx;
             maxxx = arr[i];
         }
+        
+        else if(arr[i]<maxxx && arr[i]>smaxxx)
+        {
+            smaxxx = arr[i];
+        }
     }
     
     cout<<smaxxx;

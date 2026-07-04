@@ -5,7 +5,7 @@ solution:
 brute approach :
 
  int n = nums.size();
-    k = k%n;
+    k = k % n;
     vector<int>temp(k);
     int j = 0;
     

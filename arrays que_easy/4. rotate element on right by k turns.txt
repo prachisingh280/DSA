@@ -9,7 +9,7 @@ brute approach :
     vector<int>temp(k);
     int j = 0;
     
-    for(int i=n-k; i<n; i++)
+    for(int i = n-k; i<n; i++)
     {
         temp[j] = nums[i];
         j++;

@@ -2,7 +2,7 @@ problem link : https://leetcode.com/problems/rotate-array/submissions/2054040241
 
 solution:
 
-brute approach :
+brute approach :  TC = O(N), SC = O(N)
 
  int n = nums.size();
     k = k % n;
@@ -26,3 +26,22 @@ brute approach :
     }
     
     return;
+
+optimized approach :   TC = O(N), SC = O(1)
+
+int n = nums.size();
+        if (n <= 1) return; 
+        
+        k = k % n; 
+        if (k == 0) return;
+
+        // Step 1: Reverse the entire array
+        reverse(nums.begin(), nums.end());
+        
+        // Step 2: Reverse the first k elements
+        reverse(nums.begin(), nums.begin() + k);
+        
+        // Step 3: Reverse the remaining n-k elements
+        reverse(nums.begin() + k, nums.end());
+    }
+};

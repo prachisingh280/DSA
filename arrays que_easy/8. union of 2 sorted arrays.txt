@@ -1,0 +1,56 @@
+BRUTE APPROACH :     TC = O(N1 log N) + O(N2 log N) + O(N1+N2), SC = O(N1+N2)
+
+
+
+void unionnn(vector<int> &nums, vector<int> &bums)
+{
+    int n = nums.size();
+    int m = bums.size();
+    set<int>st;
+
+    for(int i=0; i<n; i++)
+    {
+        st.insert(nums[i]);
+    }
+    
+    for(int i=0; i<m; i++)
+    {
+        st.insert(bums[i]);
+    }
+    
+    vector<int>unionn(st.begin(), st.end());
+    
+    for(int i=0; i<unionn.size(); i++)
+    {
+        cout<<unionn[i]<<" ";
+    }
+    return;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int m;
+    cin >> m;
+    vector<int>bums(m);
+    
+    for(int i=0; i<m; i++)
+    {
+        cin>>bums[i];
+    }
+    
+    unionnn(nums,bums);
+    
+
+}
+
+
+OPTIMAL APPROACH :  

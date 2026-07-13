@@ -1,0 +1,127 @@
+BRUTE APPROACH :               TC = O(n*m), SC = O(m){of the temp array}
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void intersectionn(vector<int>&nums, vector<int>&bums)
+{
+    int n = nums.size();
+    int m = bums.size();
+    vector<int>temp(m,0);
+    vector<int>ans;
+    int i=0;
+    int j=0;
+    
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<m; j++)
+        {
+            if(nums[i] == bums[j] && temp[j] == 0)
+            {
+                ans.push_back(nums[i]);
+                temp[j]=1;
+                break;
+            }
+        }
+    }
+    
+    for(int i=0; i<ans.size(); i++)
+    {
+        cout<<ans[i]<<" ";
+    }
+    return;
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int m;
+    cin>>m;
+    vector<int>bums(m);
+    
+    for(int i=0; i<m; i++)
+    {
+        cin>>bums[i];
+    }
+    
+    intersectionn(nums,bums);
+    
+}
+
+
+
+
+
+OPTIMAL APPROACH :   TC = O(n+m), SC = O(k) {here k is the no. of common elements}
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void inti(vector<int> &nums, vector<int> &bums)
+{
+    int n = nums.size();
+    int m = bums.size();
+    
+    int i = 0;
+    int j = 0;
+    vector<int>inter;
+    
+    while(i<n && j<m)
+    {
+        if(nums[i]==bums[j])
+        {
+            inter.push_back(nums[i]);
+            i++;
+            j++;
+        }
+        else if(nums[i]<bums[j])
+        {
+            i++;
+        }
+        else if(nums[i]>bums[j])
+        {
+            j++;
+        }
+    }
+    
+    for(int i=0; i<inter.size(); i++)
+    {
+        cout<<inter[i]<<" ";
+    }
+    
+    return;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int m;
+    cin >> m;
+    vector<int>bums(m);
+    
+    for(int i=0; i<m; i++)
+    {
+        cin>>bums[i];
+    }
+    
+    inti(nums,bums);
+    
+
+}

@@ -1,0 +1,95 @@
+BRUTE APPROACH :     TC = O(N^2), SC = O(1)
+
+
+int missing_element(vector<long long>&nums)
+{
+    int n = nums.size() + 1;
+    bool found = false;
+    for(int i=1; i<=n; i++)
+    {
+        for(int j=0; j<n-1; j++)
+        {
+            found = false;
+            
+            if(nums[j] == i)
+            {
+                found = true;
+                break;
+            }
+            
+        }
+        if(found == false)
+            {
+                return i;
+            }
+    }
+}
+
+int main() 
+{
+    long long n;
+    cin>>n;
+    vector<long long>nums(n-1);
+    
+    for(long long i=0; i<n-1; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    cout<<missing_element(nums);
+    
+}
+
+
+BETTER APPROACH :          TC = O(2N), SC = O(N+1)
+
+
+int n = nums.size() + 1;
+    vector<int>hash(n+1,0) ;
+    
+    for(int i=0; i<n-1; i++)
+    {
+        hash[nums[i]] = 1;
+    }
+    
+    for(int i=1; i<n+1; i++)
+    {
+        if(hash[i] == 0)
+        {
+            return i;
+        }
+    }
+
+
+
+OPTIMAL APPROACH :       TC = O(N), SC = O(1)
+
+
+int missing_element(vector<long long>&nums)
+{
+    long long n = nums.size() + 1;
+    long long real_summ = (n)*(n+1)/2;
+    long long summ = 0;
+    for(long long i=0; i<n-1; i++)
+    {
+        summ = summ + nums[i];
+    }
+    return real_summ-summ;
+}
+
+int missing_element(vector<long long>&nums)
+{
+    int n = nums.size() + 1;
+    int xor1 = 0;
+    int xor2 = 0;
+    
+    for(int i=0; i<n-1; i++)
+    {
+        xor2 = xor2^nums[i];
+        xor1 = xor1^(i+1);
+    }
+    xor1 = xor1^(n);
+    return xor1^xor2;
+}
+
+

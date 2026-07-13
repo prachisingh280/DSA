@@ -1,4 +1,4 @@
-BRUTE APPROACH :     TC = O(N1 log N) + O(N2 log N) + O(N1+N2), SC = O(N1+N2)
+BRUTE APPROACH :     TC = O(N log N) + O(M log N) + O(N+M), SC = O(N+M){space used by set} + O(N+M){space used by union, to preset the ans}
 
 
 
@@ -53,4 +53,88 @@ int main()
 }
 
 
-OPTIMAL APPROACH :  
+OPTIMAL APPROACH :        TC = O(N+M) , SC = O(N+M) {this space complexity is not used in the solution, but to present just the answer}
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void unionnn(vector<int> &nums, vector<int> &bums)
+{
+    int n = nums.size();
+    int m = bums.size();
+    
+    int i = 0;
+    int j = 0;
+    vector<int>unionn;
+    
+    while(i<n && j<m)
+    {
+        if(nums[i]<=bums[j])
+        {
+            if(unionn.size() == 0 || nums[i]!=unionn.back())
+            {
+                unionn.push_back(nums[i]);
+            }
+            i++;
+        }
+        else
+        {
+            if(unionn.size() == 0 || bums[j]!=unionn.back())
+            {
+                unionn.push_back(bums[j]);
+            }
+            j++;
+        }
+        
+    }
+    
+        while(i<n)
+        {
+            if(unionn.size() == 0 || nums[i]!=unionn.back())
+            {
+                unionn.push_back(nums[i]);
+            }
+            i++;
+        }
+        
+        while(j<m)
+        {
+            if(unionn.size() == 0 || bums[j]!=unionn.back())
+            {
+                unionn.push_back(bums[j]);
+            }
+            j++;
+        }
+        
+        for(int i=0; i<unionn.size(); i++)
+        {
+            cout<<unionn[i]<<" ";
+        }
+    return;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int m;
+    cin >> m;
+    vector<int>bums(m);
+    
+    for(int i=0; i<m; i++)
+    {
+        cin>>bums[i];
+    }
+    
+    unionnn(nums,bums);
+    
+
+}

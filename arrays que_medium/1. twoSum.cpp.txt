@@ -1,0 +1,65 @@
+problem link : 
+
+BRUTE APPROACH            TC = less than O(n^2), SC = O(2)
+
+
+vector<int> twoSum(vector<int>& nums, int target)
+{
+    int n = nums.size();
+    vector<int>ans;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            if(nums[i] + nums[j] == target)
+            {
+                ans.push_back(i);
+                ans.push_back(j);
+                return ans;
+            }
+        }
+    }
+    return {};
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int target;
+    cin>>target;
+    
+    vector<int>ans = twoSum(nums,target);
+    for(int i=0; i<ans.size(); i++)
+    {
+        cout<<ans[i]<<" ";
+    }
+    
+}
+
+
+OPTIMAL APPROACH      TC = O(nlogn), SC = O(n)
+
+
+vector<int>twoSum(vector<int>&nums, int target)
+{
+    int n = nums.size();
+    map<int,int>mpp;
+    for(int i=0; i<n; i++)
+    {
+        int num = nums[i];
+        int buddy = target - nums[i];
+        if(mpp.find(buddy) != mpp.end())
+        {
+            return {mpp[buddy],i};
+        }
+        mpp[num] = i;
+    }
+    return {-1,-1};
+}

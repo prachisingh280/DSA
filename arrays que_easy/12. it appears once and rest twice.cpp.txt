@@ -1,0 +1,77 @@
+problem link : https://leetcode.com/problems/single-number/description/
+
+BRUTE APPROACH :     TC = O(n^2), SC = O(1)
+
+
+
+int single_number(vector<int>& nums)
+{
+    int n = nums.size();
+    
+    for(int i=0; i<n; i++)
+    {
+        int cnt = 0;
+        for(int j=0; j<n; j++)
+        {
+            if(nums[j] == nums[i])
+            {
+                cnt++;
+            }
+        }
+        if(cnt!=2)
+        {
+            return nums[i];
+        }
+    }
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    cout<<single_number(nums);
+}
+
+BETTER APPROACH :      TC = O(n), SC = O(n)
+
+
+int single_number(vector<int>& nums)
+{
+    int n = nums.size();
+    
+    unordered_map<long long,int>mp;
+    for(int i=0; i<n; i++)
+    {
+        mp[nums[i]]++;
+    }
+    
+    for(auto it : mp)
+    {
+        if(it.second == 1)
+        {
+            return it.first;
+        }
+    }
+}
+
+OPTIMAL APPROACH :    TC = O(n) , SC = O(1)
+
+
+int single_number(vector<int>& nums)
+{
+    int n = nums.size();
+    int xor1 = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        xor1 = nums[i]^xor1;
+    }
+    
+    return xor1;
+}

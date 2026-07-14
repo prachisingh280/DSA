@@ -1,1 +1,19 @@
 https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/description/
+
+SOLUTION : 
+
+
+int n = nums.size();
+        int drops = 0;
+
+        for(int i = 0; i < n-1; i++)
+        {
+            if(nums[i] > nums[i+1])
+                drops++;
+        }
+
+        // also check wrap around (last > first)
+        if(nums[n-1] > nums[0])
+            drops++;
+
+        return drops <= 1;

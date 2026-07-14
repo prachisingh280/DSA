@@ -1,0 +1,45 @@
+problem link : 
+
+BRUTE APPROACH :    TC = O(3n) , SC = O(n)
+
+
+void sortcolours(vector<int>&nums)
+{
+    int n = nums.size();
+    vector<int>ans;
+    int j=0;
+    while(j<=2)
+    {
+        for(int i=0; i<n; i++)
+        {
+            if(nums[i] == j)
+            {
+                ans.push_back(nums[i]);
+            }
+        }
+        j++;
+    }
+    
+    for(int i=0; i<ans.size(); i++)
+    {
+        cout<<ans[i]<<" ";
+    }
+    return;
+    
+}
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+   
+   sortcolours(nums);
+}
+
+
+
+BETTER APPROACH : 

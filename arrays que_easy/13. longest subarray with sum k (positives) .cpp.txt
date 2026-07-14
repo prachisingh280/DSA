@@ -1,0 +1,38 @@
+BRUTE APPROACH :       TC = O(n^2), SC = O(n)
+
+
+int single_number(vector<int>& nums,int k)
+{
+    int n = nums.size();
+    int len = 0; 
+    
+    for(int i=0; i<n; i++)
+    {
+        int summ = 0;
+        for(int j=i; j<n; j++)
+        {
+            summ = summ + nums[j];
+            if(summ == k)
+            {
+                len = max(len,j-i+1);
+            }
+        }
+    }
+    return len;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int k;
+    cin>>k;
+    
+    cout<<single_number(nums,k);
+}

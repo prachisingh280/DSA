@@ -1,4 +1,4 @@
-problem link : 
+problem link : https://leetcode.com/problems/two-sum/
 
 BRUTE APPROACH            TC = less than O(n^2), SC = O(2)
 

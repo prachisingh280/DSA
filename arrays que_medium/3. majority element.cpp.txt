@@ -1,0 +1,101 @@
+problem link : https://leetcode.com/problems/majority-element/description/
+
+
+BRUTE APPROACH :            TC = O(n^2) , SC = O(1);
+
+
+
+int majorityelement(vector<int>&nums)
+{
+    int n = nums.size();
+    int cnt = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        cnt=0;
+        for(int j=0; j<n; j++)
+        {
+            if(nums[j] == nums[i])
+            {
+                cnt++;
+            }
+        }
+        if(cnt>n/2)
+        {
+            return nums[i];
+        }
+    }
+    
+    return -1;
+}
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    cout<<majorityelement(nums);
+}
+
+
+BETTER APPROACH :             TC = O(nlogn) + O(n) , SC = O(n)
+
+
+int majorityelement(vector<int>&nums)
+{
+    int n = nums.size();
+    map<int,int>mpp; // O(nlogn)
+    int cnt;
+    
+    for(int i=0; i<n; i++) // O(n)
+    {
+        mpp[nums[i]]++;
+    }
+    
+    for(auto it : mpp)
+    {
+        if(it.second > n/2)
+        {
+            return it.first;
+        }
+    }
+    
+    return -1;
+}
+
+
+OPTIMAL APPROACH :      TC = O(n) , SC = O(1)
+
+int majorityelement(vector<int>&nums)
+{
+    int n = nums.size();
+    int ele;
+    int cnt = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        if(cnt == 0)
+        {
+            ele = nums[i];
+        }
+        
+        if(nums[i] == ele)
+        {
+            cnt++;
+        }
+        else
+        {
+            cnt--;
+        }
+    }
+     
+    return ele;
+    
+    
+    return -1;
+}

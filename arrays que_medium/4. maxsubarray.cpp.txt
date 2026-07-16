@@ -35,3 +35,31 @@ int main()
     
     cout<<majorityelement(nums);
 }
+
+
+OPTIMAL APPROACH :   TC = O(n) , SC = O(1)
+
+
+
+int maxsbarray(vector<int>&nums)
+{
+    int n = nums.size();
+    int summ = 0;
+    int maxx = INT_MIN;
+    
+    for(int i=0; i<n; i++)
+    {
+        summ +=nums[i];
+        maxx = max(summ,maxx);
+        if(summ<0)
+        {
+            summ = 0;
+        }
+        else
+        {
+            maxx = max(maxx,summ);
+        }
+    }
+    
+    return maxx;
+}

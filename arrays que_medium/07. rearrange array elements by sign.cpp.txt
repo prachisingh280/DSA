@@ -1,0 +1,55 @@
+problem link : https://leetcode.com/problems/rearrange-array-elements-by-sign/description/
+
+
+BRUTE APPROACH :         TC = O(2n) , SC = O(n)
+
+
+vector<int>rearrange(vector<int>&nums)
+{
+    int n = nums.size();
+    int j = 0;
+    vector<int>bums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        if(nums[i]>=0)
+        {
+            bums[j] = nums[i];
+            j = j + 2;
+        }
+    }
+    
+     j = 1;
+    for(int i=0; i<n; i++)
+    {
+        if(nums[i]<0)
+        {
+            bums[j] = nums[i];
+            j = j + 2;
+        }
+    }
+    
+    return bums;
+}
+
+int main() 
+{
+    int n;
+     cin>>n;
+     vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    vector<int> bums = rearrange(nums);
+
+    for (int i = 0; i < bums.size(); i++)
+    {
+        cout << bums[i] << " ";
+    }
+}
+
+
+OPTIMAL APPROACH :   TC = O(n) , SC = O(n) {NO WELL OPTIMIZATION EXISTS FOR THIS CODE}

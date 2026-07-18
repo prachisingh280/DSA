@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+    long long t;
+    cin>>t;
+    while(t--)
+    {
+        long long n,k,m;
+        cin>>n>>k>>m;
+        int j;
+        if(k>m)
+        {
+            cout<<"NO"<<"\n";
+            continue;
+        }
+        long long arr[n];
+        cout<<"YES"<<"\n";
+        for(long long i=0; i<k; i++)
+        {
+            arr[i] = m*(i+1);
+            j = i;
+        }
+        for(long long i=0; i<n-k; i++)
+        {
+            arr[j+1] = 1;
+            j++;
+        }
+        
+        for(long long i=0; i<n;i++)
+        {
+            cout<<arr[i]<<" ";
+        }
+        
+        cout<<"\n";
+    }
+}

@@ -1,0 +1,53 @@
+problem link : 
+
+brute approach : it is a very lengthy code done through recursion, if you want to see how it works you can refer recursion L-12 & L-13 of recursion playlist of striver.
+
+better approach : it involves the use of STL library called next_permutation.
+
+optimal approach :      TC = O(nlogn) , SC = O(1){we do not use any extra space, but we are modifying the array so the SC might be O(n)}
+
+
+void nextpermutation(vector<int>&nums)
+{
+    int n = nums.size();
+    int j;
+    for(int i=n-1; i>0; i--)
+    {
+        if(nums[i]>nums[i-1])
+        {
+            j = i;
+            int maxx = i;
+            for(int k = i+1; k<n; k++)
+            {
+                if(nums[k]<nums[maxx] && nums[k]>nums[i-1])
+                {
+                    maxx = k;
+                }
+            }
+            swap(nums[i-1],nums[maxx]);
+            break;
+        }
+    }
+    
+    sort(nums.begin()+j, nums.end());
+    
+    for(int i=0; i<n; i++)
+    {
+        cout<<nums[i]<<" ";
+    }
+    
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    nextpermutation(nums);
+}

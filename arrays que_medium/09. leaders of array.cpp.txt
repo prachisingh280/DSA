@@ -1,0 +1,62 @@
+BRUTE APPROACH :    TC = O(n^2) , SC = O(k) { K = no. of leaders}
+
+
+int main()
+{
+       int n;
+       cin>>n;
+       vector<int>arr(n);
+       vector<int>brr;
+       
+       for(int i=0; i<n; i++)
+       {
+           cin>>arr[i];
+       }
+       
+       
+       for(int i=0; i<n-1; i++)
+       {
+           bool found = true;
+           for(int j=i; j<n; j++)
+           {
+               if(arr[j]>arr[i])
+               {
+                   found = false;
+                   break;
+               }
+           }
+           
+           if(found == true)
+           {
+               brr.push_back(arr[i]);
+           }
+       }
+       
+      brr.push_back(arr[n-1]);
+       
+       for(int i=0; i<brr.size(); i++)
+       {
+           cout<<brr[i]<<" ";
+       }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

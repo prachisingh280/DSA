@@ -4,6 +4,18 @@ brute approach : it is a very lengthy code done through recursion, if you want t
 
 better approach : it involves the use of STL library called next_permutation.
 
+void nextpermutation(vector<int>&nums)   TC = O(n) , SC = O(1)
+{
+    int n = nums.size();
+    next_permutation(nums.begin(),nums.end());
+    
+    for(int x : nums)
+    {
+        cout<<x<<" ";
+    }
+    
+}
+
 optimal approach :      TC = O(nlogn) , SC = O(1){we do not use any extra space, but we are modifying the array so the SC might be O(n)}
 
 

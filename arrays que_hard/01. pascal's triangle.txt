@@ -25,3 +25,57 @@ int main()
     cin>>row>>column;
     generate(row-1, column-1);
 }
+
+2. GIVEN n = ROW NO. PRINT THE ENTIRE ROW.
+
+a) BRUTE APPROACH      TC = O(n*column) , SC = O(1)
+void generate(int row, int column)
+{
+    int res = 1;
+    for(int i=0; i<column; i++)
+    {
+        res = res*(row-i);
+        res = res / (i+1);
+    }
+    
+    cout<<res<<" ";
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    
+    for(int i=1; i<=n; i++)
+    {
+        int r,c;
+        r = n;
+        c = i;
+        generate(r-1,c-1);
+    }
+    
+}
+
+b) OPTIMAL APPROACH       TC = O(n) , SC = O(1)
+
+
+int main() 
+{
+    int n;
+    cin>>n;
+    
+    int ans = 1;
+    cout<<ans<<" ";
+    
+    for(int i=1; i<n; i++)
+    {
+       ans = ans * (n-i);
+       ans = ans / i;
+       cout<<ans<<" ";
+    }
+    
+}
+
+
+
+

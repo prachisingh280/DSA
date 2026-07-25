@@ -1,0 +1,53 @@
+problem link : 
+
+
+BRUTE APPROACH :     TC = O(nlogn) , SC = O(1){we do not use any extra space to compute our ans}
+
+
+vector<int> majorityElement(vector<int>&nums)
+{
+    int n = nums.size();
+    int a = n/3;
+    unordered_map<int,int>mpp;
+    
+    for(int i=0; i<n; i++)
+    {
+        mpp[nums[i]]++;
+    }
+    
+    vector<int>bums;
+    
+    int count = 0;
+    for(auto it : mpp)
+    {
+        if(it.second > a)
+        {
+            bums.push_back(it.first);
+        }
+    }
+    
+    return bums;
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    vector<int>bums = majorityElement(nums);
+    
+    for(int i=0; i<bums.size(); i++)
+    {
+        cout<<bums[i]<<" ";
+    }
+}
+
+
+

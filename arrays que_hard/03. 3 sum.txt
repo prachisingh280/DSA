@@ -57,7 +57,7 @@ int main()
 
 
 
-OPTIMAL APPROACH :         TC = O(nlogn) + O(n) , SC = O(unique pairs){this space complexity is only used to return the ans}
+OPTIMAL APPROACH :         TC = O(nlogn) + O(n^2) , SC = O(unique pairs){this space complexity is only used to return the ans}
 
 vector<vector<int>> threeSum(vector<int>& nums)
 {

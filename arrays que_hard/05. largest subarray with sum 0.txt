@@ -1,0 +1,80 @@
+BRUTE APPROACH :    TC = O(n^2) , SC = O(1)
+
+
+int maxLen(vector<int>& arr)
+{
+    int n = arr.size();
+    int maxx = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        int sum = 0;
+        for(int j=i; j<n; j++)
+        {
+            sum = sum + arr[j];
+            
+            if(sum==0)
+            {
+                maxx = max(maxx,j-i+1);
+            }
+        }
+    }
+    return maxx;
+    
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>arr(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>arr[i];
+    }
+    
+    cout<<maxLen(arr);
+}
+
+
+
+OPTIMAL APPROACH :    TC = O(n) , SC = O(n) {unoreder map in the worst case stores O(n) space}
+
+
+int maxLen(vector<int>& arr)
+{
+    int n = arr.size();
+    int maxx = 0;
+    unordered_map<int,int>mpp;
+    int sum = arr[0];
+    mpp[sum]++;
+    
+    for(int i=1; i<n; i++)
+    {
+        sum = sum + arr[i];
+        auto it = mpp.find(sum);
+        if(it != mpp.end())
+        {
+            int len = i + 1 - it->second;
+            maxx = max(maxx, len);
+        }
+        else
+        {
+            mpp[sum] = i;
+        }
+        
+    }
+    
+    return maxx;
+}
+
+
+
+
+
+
+
+
+
+

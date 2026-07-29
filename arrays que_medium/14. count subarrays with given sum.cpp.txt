@@ -1,4 +1,4 @@
-problem link : 
+problem link : https://leetcode.com/problems/subarray-sum-equals-k/description/
 
 
 BRUTE APPROACH :            TC = O(n^2) , SC = O(1)
@@ -44,5 +44,30 @@ int main()
     cout<<subarraySum(nums,k);
     
     
+}
+
+
+OPTIMAL APPROACH :    TC = O(nLOGN) , SC = O(n)
+
+
+int subarraySum(vector<int>& nums, int k)
+{
+    int cnt = 0;
+    int n = nums.size();
+
+    unordered_map<int,int>mpp;
+    mpp[0] = 1;
+    int presum = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        presum = presum + nums[i];
+        int val = presum - k;
+        
+        cnt = cnt + mpp[val];
+        mpp[presum]++;
+    }
+    
+    return cnt;
 }
 

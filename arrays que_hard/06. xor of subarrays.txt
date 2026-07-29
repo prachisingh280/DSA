@@ -1,0 +1,70 @@
+BRUTE APPROACH :    TC = O(n^2) , SC = O(1)
+
+
+int subarrayXor(vector<int>& nums, int k)
+{
+    int cnt = 0;
+    int n = nums.size();
+    
+    for(int i=0; i<n; i++)
+    {
+        int xorr = nums[i];
+        if(xorr == k)
+        {
+            cnt++;
+        }
+        for(int j=i+1; j<n; j++)
+        {
+            xorr = xorr^nums[j];
+            if(xorr == k)
+            {
+                cnt++;
+            }
+        }
+    }
+    
+    return cnt;
+
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int k;
+    cin>>k;
+    
+    cout<<subarrayXor(nums,k);
+    
+}
+
+
+
+OPTIMAL APPROACH :    TC = O(n) + O(logn) , SC = O(n)
+
+int subarrayXor(vector<int>& nums, int k)
+{
+    int cnt = 0;
+    int n = nums.size();
+    unordered_map<int,int>mpp;
+    mpp[0] = 1;
+    int xorr = 0;
+    
+    for(int i=0; i<n; i++)
+    {
+        xorr =xorr^nums[i];
+        int val = xorr^k;
+        cnt = cnt + mpp[val];
+        mpp[xorr]++;
+    }
+    
+    return cnt;
+
+}

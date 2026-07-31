@@ -1,0 +1,120 @@
+problem link : https://leetcode.com/problems/merge-intervals/description/
+
+
+BRUTE APPROACH :      TC = O(2n) + O(nlogn) , SC = O(n)
+
+
+vector<vector<int>> merge(vector<vector<int>>& intervals)
+{
+    int n = intervals.size();
+    sort(intervals.begin(),intervals.end());
+    vector<vector<int>>ans;
+    
+    for(int i=0; i<n; i++)
+    {
+       int start = intervals[i][0];
+       int end = intervals[i][1];
+       
+       if(!ans.empty() && end <= ans.back()[1])
+       {
+           continue;
+       }
+       
+       for(int j=i+1; j<n; j++)
+       {
+           if(intervals[j][0]<=end)
+           {
+               end = max(intervals[j][1],end);
+           }
+           else
+           {
+               break;
+           }
+       }
+       ans.push_back({start,end});
+    }
+    
+    return ans;
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<vector<int>>intervals(n,vector<int>(2));
+    
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<2; j++)
+        {
+            cin>>intervals[i][j];
+        }
+    }
+    
+    vector<vector<int>>answer = merge(intervals);
+    
+    for(int i=0; i<answer.size(); i++)
+    {
+        cout<<"{"<<answer[i][0]<<","<<answer[i][1]<<"} ";
+    }
+}
+
+
+OPTIMAL APPROACH :    TC = O(nlogn) + O(n) , SC = O()
+
+
+vector<vector<int>> merge(vector<vector<int>>& intervals)
+{
+    int n = intervals.size();
+    sort(intervals.begin(),intervals.end());
+    vector<vector<int>>ans;
+    
+    for(int i=0; i<n; i++)
+    {
+       if(ans.empty() || intervals[i][0]>ans.back()[1])
+       {
+           ans.push_back(intervals[i]);
+       }
+       else
+       {
+           ans.back()[1] = max(ans.back()[1], intervals[i][1]);
+       }
+    }
+    
+    return ans;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

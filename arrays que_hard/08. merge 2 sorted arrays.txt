@@ -1,0 +1,177 @@
+problem link : https://leetcode.com/problems/merge-sorted-array/description/
+
+BRUTE APPROACH :   TC = 2*O(n+m) , SC = O(n+m)
+
+
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+{
+    vector<int>ans;
+    int i = 0;
+    int j = 0;
+    
+    while(i<m && j<n)
+    {
+        if(nums1[i]<=nums2[j])
+        {
+            ans.push_back(nums1[i]);
+            i++;
+        }
+        else
+        {
+            ans.push_back(nums2[j]);
+            j++;
+        }
+    }
+    
+    while(i<m)
+    {
+        ans.push_back(nums1[i]);
+        i++;
+    }
+    while(j<n)
+    {
+        ans.push_back(nums2[j]);
+        j++;
+    }
+    
+    
+    for(int i=0; i<m+n; i++)
+    {
+        nums1[i] = ans[i];
+    }
+    
+    for(int j=0; j<nums1.size(); j++)
+    {
+        cout<<nums1[j]<<" ";
+    }
+    
+    return;
+}
+
+int main() 
+{
+    int m,n;
+    cin>>m>>n;
+    vector<int>nums1((m+n),0);
+    vector<int>nums2(n);
+    
+    for(int i=0; i<m; i++)
+    {
+        cin>>nums1[i];
+    }
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums2[i];
+    }
+    
+    merge(nums1,m,nums2,n);
+}
+
+
+
+OPTIMAL APPROACH :   TC = O(min(n,m) + O(nlogn) + O(mlogm) , SC = O(1) {better soltn because of linear SC}
+
+
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+{
+    int left = m-1;
+    int right = 0;
+    
+    while(left>=0 && right<n)
+    {
+        if(nums1[left]>nums2[right])
+        {
+            swap(nums1[left],nums2[right]);
+            left--;
+            right++;
+        }
+        else
+        {
+            break;
+        }
+    }
+    
+    sort(nums1.begin(),nums1.begin()+m);
+    sort(nums2.begin(),nums2.end());
+    
+    for(int i=m; i<n+m; i++)
+    {
+        nums1[i] = nums2[i-m];
+    }
+    
+    for(int j=0; j<nums1.size(); j++)
+    {
+        cout<<nums1[j]<<" ";
+    }
+    
+    return;
+}
+
+
+
+OPTIMAL APPROACH :   TC = O(n+m) , SC = O(1) {EASIER APPROACH}
+
+
+void merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+{
+    int i = m-1;
+    int j = n-1;
+    int k = m+n-1;
+    
+    while(i>=0 && j>=0)
+    {
+        if(nums1[i]>nums2[j])
+        {
+            nums1[k] = nums1[i];
+            i--;
+        }
+        else
+        {
+            nums1[k] = nums2[j];
+            j--;
+        }
+        k--;
+    }
+    while(j>=0)
+    {
+        nums1[k] = nums2[j];
+        j--;
+        k--;
+    }
+    
+    for(int i=0; i<nums1.size(); i++)
+    {
+        cout<<nums1[i]<<" ";
+    }
+    
+    return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

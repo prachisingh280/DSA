@@ -28,7 +28,10 @@ int findPeakElement(vector<int>& nums)
         {
             l = mid+1;
         }
-        if(mid==0 || mid==n-1) return mid;
+        else
+        {
+            l = mid+1;
+        }
     }
     return -1;
 }

@@ -1,0 +1,74 @@
+TC = O(log n) , sc = O(1)
+
+int floorSqrt(int N,int M)
+{
+    int l = 1;
+    int h = M;
+
+    while(l<=h)
+    {
+        long long mid = (l+h)/2;
+        long long check = 1;
+        for(int i=1; i<=N; i++)
+        {
+            check = mid*check;
+        }
+        if(check>M)
+        {
+            h = mid-1;
+        }
+        else if(check<M)
+        {
+            l = mid+1;
+        }s
+        else
+        {
+            return mid;
+        }
+    }
+        return -1;
+}
+
+int main() 
+{
+    int N,M;
+    cin>>N>>M;
+    cout<<floorSqrt(N,M);
+}
+
+VIDEO VERSION { VERYY GOOODDD}
+
+
+double floorSqrt(double N,double M)
+{
+    double l = 1;
+    double h = M;
+    double ans = 1;
+    double eps = 1e-6;
+    while((h-l)>eps)
+    {
+        double mid = (l+h)/2.0;
+        double check = 1;
+        for(int i=1; i<=N; i++)
+        {
+            check = mid*check;
+        }
+        if(check>=M)
+        {
+            h = mid;
+        }
+        else 
+        {
+            l = mid;
+        }
+        
+    }
+        return l;
+}
+
+int main() 
+{
+    double N,M;
+    cin>>N>>M;
+    cout<<floorSqrt(N,M);
+}

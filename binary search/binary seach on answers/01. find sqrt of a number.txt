@@ -1,0 +1,44 @@
+BRUTE APPROACH :    TC = O(root of n) , SC = O(1)
+
+int floorSqrt(int n)
+{
+    for(int i=1; i<=n; i++)
+    {
+        if(i*i>n)
+        {
+            return i-1;
+        }
+    }
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    cout<<floorSqrt(n);
+}
+
+OPTIMAL APPROACH :   TC = O(log n) , SC = O(1)
+
+
+int floorSqrt(int n)
+{
+    int l = 1;
+    int h = n;
+    int ans = -1;
+    while(l<=h)
+    {
+        int mid = (l+h)/2;
+        
+        if(mid*mid>n)
+        {
+            h = mid-1;
+        }
+        else 
+        {
+            ans = mid;
+            l = mid+1;
+        }
+    }
+        return ans;
+}

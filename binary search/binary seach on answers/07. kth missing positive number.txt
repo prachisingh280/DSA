@@ -1,5 +1,4 @@
-#include <bits/stdc++.h>
-using namespace std;
+MY BRUTE FORCE SOLUTION : TC = O(n+max_len) , SC = O(max_len)
 
 int solve(vector<int>&arr, int max_len, int k)
 {
@@ -48,3 +47,27 @@ int main()
     
     cout<<findKthPositive(arr,k);
 }
+
+STRIVER'S BRUTE FORCE SOLUTION : TC = O(n) , SC = O(1)
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int findKthPositive(vector<int>& arr, int k)
+{
+    int n = arr.size();
+    
+    for(int i=0; i<n; i++)
+    {
+        if(arr[i]<=k)
+        {
+            k++;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return k;
+}
+

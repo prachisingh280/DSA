@@ -1,0 +1,78 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool possible(vector<int>&nums,int dist, int k)
+{
+    int n = nums.size();
+    int i = 0;
+    int j = i+1;
+    int cnt = 1;
+    
+    while(j<n && cnt<k)
+    {
+        if(nums[j] - nums[i] >= dist)
+        {
+            cnt++;
+            i = j;
+            j++;
+        }
+        else
+        {
+            j++;
+        }
+        if(cnt>=k)
+        {
+            return true;
+        }
+    }
+    if(cnt!=k)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+int aggressiveCows(vector<int> &nums, int k)
+{
+    int n = nums.size();
+    sort(nums.begin(),nums.end());
+    int ans = -1;
+    int l = 1;
+    int h = nums[n-1] - nums[0];
+    
+    while(l<=h)
+    {
+        int mid = (l+h)/2;
+        if(possible(nums,mid,k) == true)
+        {
+            ans = mid;
+            l = mid+1;
+        }
+        else
+        {
+            h = mid-1;
+        }
+    }
+    
+    return ans;
+}
+
+int main() 
+{
+    int n;
+    cin>>n;
+    vector<int>nums(n);
+    
+    for(int i=0; i<n; i++)
+    {
+        cin>>nums[i];
+    }
+    
+    int k;
+    cin>>k;
+    
+    cout<<aggressiveCows(nums,k);
+}

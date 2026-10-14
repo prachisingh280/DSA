@@ -49,7 +49,7 @@ int maxsbarray(vector<int>&nums)
     
     for(int i=0; i<n; i++)
     {
-        summ +=nums[i];
+        summ += nums[i];
         maxx = max(summ,maxx);
         if(summ<0)
         {

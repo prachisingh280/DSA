@@ -1,0 +1,226 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node* next;
+    
+};
+    struct node *head;
+    struct node * temp;
+    struct node *newnode;
+    
+int countt()
+{
+    int count = 0;
+    temp = head;
+    while(temp!=NULL)
+    {
+        temp = temp->next;
+        count++;
+    }
+    return count;
+}
+
+void insertion_beg()
+{
+    int item;
+    printf("enter the item to be insserted : ");
+    scanf("%d", &item);
+    
+    newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = item;
+    newnode->next = head;
+    head = newnode;
+    
+}
+
+void insertion_end(struct node* hahaha)
+{
+    int item;
+    printf("enter the item to be inserted : ");
+    scanf("%d", &item);
+    
+    newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = item;
+    hahaha->next = newnode;
+    newnode->next = NULL;
+}
+
+void insertion_pos(int count)
+{
+    int item;
+    int pos;
+    printf("enter the position : ");
+    scanf("%d", &pos);
+    printf("enter the item to be inserted : ");
+    scanf("%d",&item);
+    
+    if(pos>count)
+    {
+        printf("invalid position");
+        return;
+    }
+    else if(pos==0)
+    {
+        newnode = (struct node*)malloc(sizeof(struct node));
+        newnode->data = item;
+        newnode->next = head;
+        head = newnode;
+    }
+    else 
+    {
+        temp = head;
+        newnode = (struct node*)malloc(sizeof(struct node));
+        newnode->data = item;
+        int i = 1;
+        while(i<pos)
+        {
+            temp = temp->next;
+            i++;
+        }
+        
+        newnode->next = temp->next;
+        temp->next = newnode;
+    }
+    
+}
+
+void deletion_beg()
+{
+    struct node* ele;
+    ele = head;
+    head = head->next;
+    free(ele);
+}
+
+void deletion_end()
+{
+    int size = countt();
+    
+    if(size==0)
+    return;
+    
+    if(size==1)
+    {
+        free(head);
+        head = NULL;
+        return;
+    }
+    
+    temp = head;
+    int i=1;
+    while(i!=(size-1))
+    {
+        temp = temp->next;
+        i++;
+    }
+    
+    struct node* ele;
+    ele = temp->next;
+    free(ele);
+    temp->next = NULL;
+}
+
+void deletion_pos()
+{
+    if(head==NULL)
+    {
+        return;
+    }
+    
+    int pos;
+    temp = head;
+    struct node* ele;
+    printf("enter the position : ");
+    scanf("%d",&pos);
+    
+    if(pos == 1)
+    {
+        ele = head;
+        head = temp->next;
+        free(ele);
+        return;
+    }
+    
+    int i = 1;
+    
+    while(i<pos-1)
+    {
+        temp = temp->next;
+        i++;
+    }
+    
+    ele = temp->next;
+    temp->next = (temp->next)->next;
+    free(ele);
+}
+
+void reverse()
+{
+    struct node* nextnode;
+    struct node* curr = head;
+    struct node* prev = NULL;
+    
+    while(nextnode!=NULL)
+    {
+        nextnode = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextnode;
+    }
+
+    head = prev;
+}
+
+void display()
+{
+    temp = head;
+    while(temp!=NULL)
+    {
+        printf("%d",temp->data);
+        printf(" ");
+        temp = temp->next;
+    }
+    return;
+}
+
+int main() 
+{
+    head = NULL;
+    int choice = 1;
+    while(choice == 1)
+    {
+        newnode = (struct node*)malloc(sizeof(struct node));
+        newnode->next = NULL;
+        printf("enter data : ");
+        scanf("%d", &newnode->data);
+        
+        if(head == NULL)
+        {
+            head = newnode;
+            temp = newnode;
+        }
+        else
+        {
+            temp->next = newnode;
+            temp = newnode;
+        }
+        
+        printf("to continue press 1 otherwise 0: \n");
+        scanf("%d", &choice);
+    
+    }
+    
+    // insertion_beg();
+    // insertion_end(temp);
+    // insertion_pos(count);
+    // deletion_beg();
+    // deletion_end();
+    // deletion_pos();
+    reverse();
+    display();
+}
+
+
+    

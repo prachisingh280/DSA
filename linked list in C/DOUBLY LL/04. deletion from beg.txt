@@ -77,10 +77,44 @@ void insertion_end()
 void deletion_beg()
 {
     temp = head;
+    if(temp==NULL)
+    {
+        printf("link is empty");
+        return;
+    }
+    if(temp->prev==NULL)
+    {
+        head = NULL;
+        free(temp);
+        return;
+    }
     struct node* ele = temp;
     
     (temp->next)->prev = NULL;
     head = temp->next;
+    free(ele);
+}
+
+void deletion_end()
+{
+    temp = head;
+    if(temp==NULL)
+    {
+        printf("list is empty");
+        return;
+    }
+    while(temp->next!=NULL)
+        {
+            temp = temp->next;
+        }
+    if(temp->prev == NULL)
+    {
+        head = NULL;
+        free(temp);
+        return;
+    }
+    struct node* ele = temp;
+    (temp->prev)->next = NULL;
     free(ele);
 }
 
@@ -100,7 +134,8 @@ int main()
     create_doubly_LL();
     // insertion_beg();
     // insertion_end();
-    deletion_beg();
+    // deletion_beg();
+    deletion_end();
     display(head);
     
 }

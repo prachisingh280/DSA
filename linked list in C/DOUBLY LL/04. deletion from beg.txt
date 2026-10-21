@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node* next;
+    struct node* prev;
+};
+
+struct node* head;
+struct node* newnode;
+struct node* temp;
+struct node* prev;
+
+struct node* create_doubly_LL()
+{
+    int choice = 1;
+    head = NULL;
+    prev = NULL;
+    
+    while(choice!=0)
+    {
+        newnode = (struct node*)malloc(sizeof(struct node));
+        newnode->next = NULL;
+        printf("enter data : ");
+        scanf("%d",&newnode->data);
+        
+        if(head==NULL)
+        {
+            head = newnode;
+            newnode->prev = NULL;
+        }
+        else
+        {
+            newnode->prev = temp;
+            temp->next = newnode;
+        }
+        
+        temp = newnode;
+        printf("enter 1 to continue else 0 : ");
+        scanf("%d",&choice);
+    }
+
+    return head;
+}
+
+void insertion_beg()
+{
+    newnode = (struct node*)malloc(sizeof(struct node));
+    temp = head;
+    head = newnode;
+    printf("enter data : ");
+    scanf("%d", &newnode->data);
+    newnode->prev = NULL;
+    newnode->next = temp;
+    temp->prev = newnode;
+}
+
+void insertion_end()
+{
+    temp = head;
+    newnode = (struct node*)malloc(sizeof(struct node));
+    printf("enter data : ");
+    scanf("%d", &newnode->data);
+    newnode->next = NULL;
+    
+    while(temp->next!=NULL)
+    {
+        temp = temp->next;
+    }
+    
+    newnode->prev = temp;
+    temp->next = newnode;
+}
+
+void deletion_beg()
+{
+    temp = head;
+    struct node* ele = temp;
+    
+    (temp->next)->prev = NULL;
+    head = temp->next;
+    free(ele);
+}
+
+void display(struct node* list)
+{
+    temp = list;
+    while(temp!=NULL)
+    {
+        printf("%d",temp->data);
+        printf(" ");
+        temp = temp->next;
+    }
+    return;
+}
+int main() 
+{
+    create_doubly_LL();
+    // insertion_beg();
+    // insertion_end();
+    deletion_beg();
+    display(head);
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

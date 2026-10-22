@@ -77,6 +77,12 @@ void insertion_pos(int count)
 
 void deletion_beg()
 {
+    if(head==NULL)
+    {
+        printf("invalid");
+        return;
+    }
+
     struct node* ele;
     ele = head;
     head = head->next;

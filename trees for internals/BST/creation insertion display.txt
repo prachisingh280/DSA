@@ -1,0 +1,144 @@
+#include <stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+    int data;
+    struct node* left;
+    struct node* right;
+};
+
+struct node*root = NULL;
+
+struct node* create_node(int value)
+{
+    struct node* newnode = malloc(sizeof(struct node));
+    
+    if(newnode == NULL)
+    {
+        printf("memory allocation failed\n");
+        exit(1);
+    }
+    
+    newnode->data = value;
+    newnode->left = NULL;
+    newnode->right = NULL;
+    
+    return newnode;
+}
+
+struct node* insert(struct node* root, int value)
+{
+    if(root == NULL)
+    {
+        return create_node(value);
+    }
+    
+    if(value < root->data)
+    {
+        root->left = insert(root->left,value);
+    }
+    
+    else
+    {
+        root->right = insert(root->right,value);
+    }
+    
+    return root;
+}
+
+void display(struct node* root, int space)
+{
+    if (root == NULL)
+        return;
+
+    space += 5;
+
+    display(root->right, space);
+
+    printf("\n");
+
+    for (int i = 5; i < space; i++)
+        printf(" ");
+
+    printf("%d\n", root->data);
+
+    display(root->left, space);
+}
+
+
+int main() 
+{
+    int n, value;
+    
+    printf("enter the number of nodes : ");
+    scanf("%d",&n);
+    
+    for(int i=0; i<n; i++)
+    {
+        printf("enter value : ");
+        scanf("%d",&value);
+        
+        root = insert(root,value);
+    }
+    
+    display(root,0);
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
